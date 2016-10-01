@@ -56,7 +56,49 @@ public class Test {
 	}
 
 	// PRIVATE METHODS
+	/**
+	 * Simulates the set of questions to be used for the Test object.
+	 */
+	private void simulateQuestions() {
+
+	}
 
 	// PUBLIC METHODS
+	/**
+	 * Checks the answer submitted by the user against the correct answer
+	 * recorded in the TestQuestion property.
+	 * 
+	 * @param question
+	 *            - the test question to be checked against
+	 * @param answer
+	 *            - the answer to be verified against the question on hand
+	 * @return Whether answer is correct or not.
+	 */
+	public boolean checkAnswer(TestQuestion question, int answer) {
+		return true;
+	}
 
+	/**
+	 * Displays a random message for the user depending on whether their answer
+	 * submitted was correct or incorrect.
+	 * 
+	 * @param isAnswerCorrect
+	 *            - determines the appropriate message to display to the user
+	 */
+	public void generateMessage(boolean isAnswerCorrect) {
+
+	}
+
+	/**
+	 * Prompts the user for his/her answer to the provided question.
+	 * 
+	 * @param testQuestions
+	 *            - the set of questions attributed to this test
+	 * @param questionNumber
+	 *            - the particular question the user is being prompted to answer
+	 * @return The answer entered by the user
+	 */
+	public String inputAnswer(String[] testQuestions, int questionNumber) {
+		return "";
+	}
 }
