@@ -21,7 +21,10 @@ public class Test {
 	private int _numIncorrectAns;
 	private int _numCorrectAns;
 	private int _testGrade;
-	
+
+	// Random number generator, shared between all Test objects
+	// only used internally to determine message to display to user
+	private final static SecureRandom randomNumGen = new SecureRandom();
 
 	// GETTER AND SETTER METHODS
 	public TestQuestion[] getTestQuestions() {
@@ -137,7 +140,20 @@ public class Test {
 	 *            - determines the appropriate message to display to the user
 	 */
 	public void generateMessage(boolean isAnswerCorrect) {
-		
+		switch (this.randomNumGen.nextInt(4)) {
+		case 0:
+			JOptionPane.showMessageDialog(null, isAnswerCorrect ? "Excellent!" : "No. Please try again");
+			break;
+		case 1:
+			JOptionPane.showMessageDialog(null, isAnswerCorrect ? "Good!" : "Wrong. Try once more");
+			break;
+		case 2:
+			JOptionPane.showMessageDialog(null, isAnswerCorrect ? "Keep up the good work!" : "Don't give up!");
+			break;
+		case 3:
+			JOptionPane.showMessageDialog(null, isAnswerCorrect ? "Nice work!" : "No. Keep trying...");
+			break;
+		}
 	}
 
 	/**
