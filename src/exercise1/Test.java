@@ -111,28 +111,27 @@ public class Test {
 					correctAnswers[i]);
 		}
 	}
-
-	// PUBLIC METHODS
+	
 	/**
-	 * Checks the answer submitted by the user against the correct answer
-	 * recorded in the TestQuestion property.
+	 * Checks the answer submitted by the user against the correct answer and
+	 * displays an appropriate message for the user
 	 * 
 	 * @param question
 	 *            - the test question to be checked against
 	 * @param submittedAnswer
 	 *            - the answer to be verified against the question on hand
-	 * @return Whether answer is correct or not.
 	 */
-	public boolean checkAnswer(TestQuestion question, int submittedAnswer) {
+	private void checkAnswer(TestQuestion question, int submittedAnswer) {
 		if (question.getCorrectAnswer() == submittedAnswer) {
 			this.setNumCorrectAns(this.getNumCorrectAns() + 1);
-			return true;
+			this.generateMessage(true);
 		} else {
 			++this._numIncorrectAns;
-			return false;
+			this.generateMessage(false);
 		}
 	}
 
+	// PUBLIC METHODS
 	/**
 	 * Displays a random message for the user depending on whether their answer
 	 * submitted was correct or incorrect.
