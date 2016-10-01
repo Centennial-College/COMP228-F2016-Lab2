@@ -120,12 +120,12 @@ public class Test {
 	 * 
 	 * @param question
 	 *            - the test question to be checked against
-	 * @param answer
+	 * @param submittedAnswer
 	 *            - the answer to be verified against the question on hand
 	 * @return Whether answer is correct or not.
 	 */
-	public boolean checkAnswer(TestQuestion question, int answer) {
-		return true;
+	public boolean checkAnswer(TestQuestion question, int submittedAnswer) {
+		return question.getCorrectAnswer() == submittedAnswer;
 	}
 
 	/**
