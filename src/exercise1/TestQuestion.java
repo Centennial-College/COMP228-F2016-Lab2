@@ -13,6 +13,7 @@ package exercise1;
 
 public class TestQuestion {
 	// INSTATNCE VARIABLES
+	String _questionTopic;
 	String _question;
 	String[] _answerOptions;
 	int _correctAnswer;
@@ -42,10 +43,31 @@ public class TestQuestion {
 		this._correctAnswer = correctAnswer;
 	}
 
+	public String getQuestionTopic() {
+		return _questionTopic;
+	}
+
+	public void setQuestionTopic(String questionTopic) {
+		this._questionTopic = questionTopic;
+	}
+
 	// CONSTRUCTORS
-	public TestQuestion(String question, String[] answerOptions, int correctAnswer) {
+	/**
+	 * Constructor for a TestQuestion object.
+	 * 
+	 * @param questionTopic
+	 *            - the topic of the question
+	 * @param question
+	 *            - the actual question
+	 * @param answerOptions
+	 *            - array of answers for the question
+	 * @param correctAnswer
+	 *            - the index of the correct answer in the array answerOptions
+	 */
+	public TestQuestion(String questionTopic, String question, String[] answerOptions, int correctAnswer) {
 		this.setQuestion(question);
 		this.setAnswerOptions(answerOptions);
 		this.setCorrectAnswer(correctAnswer);
+		this.setQuestionTopic(questionTopic);
 	}
 }

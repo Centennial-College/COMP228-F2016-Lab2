@@ -15,13 +15,13 @@ import java.security.SecureRandom;
 public class Test {
 
 	// INSTANCE VARIABLES
-	String[] _testQuestions;
+	TestQuestion[] _testQuestions;
 	int _numIncorrectAns;
 	int _numCorrectAns;
 	int _testGrade;
 
 	// GETTER AND SETTER METHODS
-	public String[] getTestQuestions() {
+	public TestQuestion[] getTestQuestions() {
 		return _testQuestions;
 	}
 
@@ -48,11 +48,14 @@ public class Test {
 		this._testGrade = this.getNumCorrectAns() / (this.getTestQuestions().length);
 	}
 
-	// CONSTRUCTOR
+	// CONSTRUCTORS
+	/**
+	 * Constructor for a Test object
+	 */
 	public Test() {
 		this.setNumCorrectAns(0);
 		this.setNumIncorrectAns(0);
-		this._testQuestions = null;
+		this.simulateQuestions();
 	}
 
 	// PRIVATE METHODS
@@ -60,7 +63,52 @@ public class Test {
 	 * Simulates the set of questions to be used for the Test object.
 	 */
 	private void simulateQuestions() {
+		// Hard-coded the questions and answers as per assignment requirements
+		// The Q&A can be entered by user interactions with slight modification
+		// to this method
 
+		// TEMPORARY VARIABLES
+		// Temporary variable storing question topics
+		String[] topicHeaders = { "Procedural Programming vs Object-Oriented Programming", "Data Hiearchy",
+				"Phases of Running a Java Application", "Brief Introduction to GUI",
+				"Brief Introduction to GUI (Continued)", "Static Variables" };
+
+		// Temporary variable storing questions
+		String[] questions = { "What is NOT true about OOP (Object-Oriented Programming)?",
+				"What is the correct hiearchy of data (from smallest to largest)?",
+				"What is the correct order of the different phases?",
+				"How do you output a message to the screen (NOT to the console)?",
+				"How do you prompt the user for input using a GUI (Graphical User Interface)?",
+				"Why do we need to declare variables as static?" };
+
+		// Temporary variable storing answers
+		String[][] answerOptions = {
+				new String[] { "promotes code reusability", "promotes enhanced security due to data encapsulation",
+						"uses structures, often called structs, to package different data types into a single entity",
+						"uses classes to package different data types, along with different functions which manipulate the data memebers of the class into a single entity" },
+				new String[] { "Bit, Character, Field, Record, File", "Character, Bit, Record,File,Field",
+						"Bit, Character, Record, Field, File", "Character, Field, Record, File, Bit" },
+				new String[] { "Creating the Program, Compiling into Bytecode, Execution",
+						"Creating the Program, Compiling into Bytecode, Loading into memory, Bytecode verification, Execution",
+						"Creating the Program, Loading into memory, Execution", "Creating the Program, Execution" },
+				new String[] { "System.Out.WriteLine(message);", "System.out.println(message);",
+						"JOptionPane.showMessageDialog(null, message);", "JOptionPane.showMessageDialog(message);" },
+				new String[] { "input = Console.ReadLine();", "input = GUI.ReadLine();",
+						"input = JOptionPane.getInputDialog(promptMessage);",
+						"input = JOptionPane.showInputDialog(promptMessage);" },
+				new String[] { "To enable static methods to use them",
+						"To allow static methods to use them and to store class-wide information",
+						"To be more professional", "To conform to proper Java naming conventions" } };
+
+		// Temporary variable storing correct answer indexes
+		int[] correctAnswers = { 2, 0, 1, 2, 3, 1 };
+
+		// GENERATING QUESTIONS
+		this._testQuestions = new TestQuestion[6];
+		for (int i = 0; i < _testQuestions.length; i++) {
+			this._testQuestions[i] = new TestQuestion(topicHeaders[i], questions[i], answerOptions[i],
+					correctAnswers[i]);
+		}
 	}
 
 	// PUBLIC METHODS
