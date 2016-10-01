@@ -2,6 +2,8 @@ package exercise1;
 
 import java.security.SecureRandom;
 
+import javax.swing.JOptionPane;
+
 /**
  * This class simulates a test including its attributes and behaviors.
  * 
@@ -138,15 +140,21 @@ public class Test {
 	}
 
 	/**
-	 * Prompts the user for his/her answer to the provided question.
+	 * Prompts the user for his/her answer to the provided question. An
+	 * exception is thrown if answer out of bounds.
 	 * 
 	 * @param testQuestions
 	 *            - the set of questions attributed to this test
 	 * @param questionNumber
 	 *            - the particular question the user is being prompted to answer
-	 * @return The answer entered by the user
+	 * @return The answer entered by the user, has to be an integer between 1-4
 	 */
-	public String inputAnswer(String[] testQuestions, int questionNumber) {
-		return "";
+	public int inputAnswer(TestQuestion[] testQuestions, int questionNumber) {
+		int input = Integer.parseInt(JOptionPane.showInputDialog(testQuestions[questionNumber].getQuestion()));
+
+		if (input < 1 || input > 4)
+			throw new IllegalArgumentException("ERROR - You must enter an integer between 1 to 4.");
+
+		return input;
 	}
 }
