@@ -111,7 +111,7 @@ public class Test {
 					correctAnswers[i]);
 		}
 	}
-	
+
 	/**
 	 * Checks the answer submitted by the user against the correct answer and
 	 * displays an appropriate message for the user
@@ -131,7 +131,6 @@ public class Test {
 		}
 	}
 
-	// PUBLIC METHODS
 	/**
 	 * Displays a random message for the user depending on whether their answer
 	 * submitted was correct or incorrect.
@@ -139,7 +138,7 @@ public class Test {
 	 * @param isAnswerCorrect
 	 *            - determines the appropriate message to display to the user
 	 */
-	public void generateMessage(boolean isAnswerCorrect) {
+	private void generateMessage(boolean isAnswerCorrect) {
 		switch (this.randomNumGen.nextInt(4)) {
 		case 0:
 			JOptionPane.showMessageDialog(null, isAnswerCorrect ? "Excellent!" : "No. Please try again");
@@ -156,6 +155,7 @@ public class Test {
 		}
 	}
 
+	// PUBLIC METHODS
 	/**
 	 * Prompts the user for his/her answer to the provided question. An
 	 * exception is thrown if answer out of bounds.
