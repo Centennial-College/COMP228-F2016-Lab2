@@ -13,10 +13,10 @@ package exercise1;
 
 public class TestQuestion {
 	// INSTATNCE VARIABLES
-	String _questionTopic;
-	String _question;
-	String[] _answerOptions;
-	int _correctAnswer;
+	private String _questionTopic;
+	private String _question;
+	private String[] _answerOptions;
+	private int _correctAnswer;
 
 	// GETTER AND SETTER METHODS
 	public String getQuestion() {

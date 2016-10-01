@@ -17,10 +17,11 @@ import javax.swing.JOptionPane;
 public class Test {
 
 	// INSTANCE VARIABLES
-	TestQuestion[] _testQuestions;
-	int _numIncorrectAns;
-	int _numCorrectAns;
-	int _testGrade;
+	private TestQuestion[] _testQuestions;
+	private int _numIncorrectAns;
+	private int _numCorrectAns;
+	private int _testGrade;
+	
 
 	// GETTER AND SETTER METHODS
 	public TestQuestion[] getTestQuestions() {
@@ -136,7 +137,7 @@ public class Test {
 	 *            - determines the appropriate message to display to the user
 	 */
 	public void generateMessage(boolean isAnswerCorrect) {
-
+		
 	}
 
 	/**
