@@ -51,7 +51,7 @@ public class Test {
 
 	// CONSTRUCTORS
 	/**
-	 * Constructor for a Test object
+	 * Default Constructor for a Test object
 	 */
 	public Test() {
 		this._numCorrectAns = 0;
@@ -60,6 +60,21 @@ public class Test {
 	}
 
 	// PRIVATE METHODS
+	/**
+	 * Returns a String object which contains the questions and answers
+	 * formatted properly.
+	 * 
+	 * @param question
+	 *            - a question in the test
+	 * @param answerOptions
+	 *            - the possible answers associated with the question on hand
+	 * @return a formatted String containing the question and the answers
+	 */
+	private String formatQuestionAndAnswers(String question, String[] answerOptions) {
+		return String.format("%s%n%n%-8s1. %s%n%-8s2. %s%n%-8s3. %s%n%-8s4. %s%n", question, "", answerOptions[0], "",
+				answerOptions[1], "", answerOptions[2], "", answerOptions[3]);
+	}
+
 	/**
 	 * Simulates the set of questions to be used for the Test object.
 	 */
@@ -102,13 +117,13 @@ public class Test {
 						"To be more professional", "To conform to proper Java naming conventions" } };
 
 		// Temporary variable storing correct answer indexes
-		int[] correctAnswers = { 2, 0, 1, 2, 3, 1 };
+		int[] correctAnswers = { 3, 1, 2, 3, 4, 2 };
 
 		// GENERATING QUESTIONS
 		this._testQuestions = new TestQuestion[6];
 		for (int i = 0; i < _testQuestions.length; i++) {
-			this._testQuestions[i] = new TestQuestion(topicHeaders[i], questions[i], answerOptions[i],
-					correctAnswers[i]);
+			this._testQuestions[i] = new TestQuestion(topicHeaders[i],
+					this.formatQuestionAndAnswers(questions[i], answerOptions[i]), correctAnswers[i]);
 		}
 	}
 
@@ -164,19 +179,25 @@ public class Test {
 	 *            - the particular question the user is being prompted to answer
 	 * @return The answer entered by the user, has to be an integer between 1-4
 	 */
-	public int inputAnswer(int questionNumber) {
-		int input = Integer
-				.parseInt(JOptionPane.showInputDialog(this.getTestQuestions()[questionNumber].getQuestion()));
+	/**
+	 * Interacts with the user by prompting the user repeatedly for a valid
+	 * answer, and then providing feedback during the test as well as at the
+	 * end.
+	 */
+	public void inputAnswer() {
+		// local variables
+		int userAnswer;
+		TestQuestion currentQuestion;
 
-		do {
-			try {
-				if (input < 1 || input > 4)
-					throw new IllegalArgumentException("ERROR - You must enter an integer between 1 to 4.");
-			} catch (IllegalArgumentException e) {
-
-			}
-		} while (input < 1 || input > 4);
-
-		return input;
+		for (int questionNumber = 0; questionNumber < this.getTestQuestions().length; questionNumber++) {
+			currentQuestion = this.getTestQuestions()[questionNumber];
+			// used showOptionDialog here instead of showInputDialog to remove
+			// the extra validation required using try-catch blocks and throwing
+			// IllegalArgumentExceptions
+			userAnswer = JOptionPane.showOptionDialog(null, currentQuestion.getQuestion(),
+					currentQuestion.getQuestionTopic(), JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null,
+					new Integer[] { 4, 3, 2, 1 }, null);
+			System.out.println("You selected: " + (Math.abs(userAnswer - 4)));
+		}
 	}
 }

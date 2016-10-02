@@ -15,7 +15,6 @@ public class TestQuestion {
 	// INSTATNCE VARIABLES
 	private String _questionTopic;
 	private String _question;
-	private String[] _answerOptions;
 	private int _correctAnswer;
 
 	// GETTER AND SETTER METHODS
@@ -25,14 +24,6 @@ public class TestQuestion {
 
 	public void setQuestion(String question) {
 		this._question = question;
-	}
-
-	public String[] getAnswerOptions() {
-		return _answerOptions;
-	}
-
-	public void setAnswerOptions(String[] answerOptions) {
-		this._answerOptions = answerOptions;
 	}
 
 	public int getCorrectAnswer() {
@@ -59,14 +50,11 @@ public class TestQuestion {
 	 *            - the topic of the question
 	 * @param question
 	 *            - the actual question
-	 * @param answerOptions
-	 *            - array of answers for the question
 	 * @param correctAnswer
 	 *            - the index of the correct answer in the array answerOptions
 	 */
-	public TestQuestion(String questionTopic, String question, String[] answerOptions, int correctAnswer) {
+	public TestQuestion(String questionTopic, String question, int correctAnswer) {
 		this.setQuestion(question);
-		this.setAnswerOptions(answerOptions);
 		this.setCorrectAnswer(correctAnswer);
 		this.setQuestionTopic(questionTopic);
 	}
