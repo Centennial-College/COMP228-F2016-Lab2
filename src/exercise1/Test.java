@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
  * 
  * @author kevinma
  * @studentID 300867968
- * @date Saturday, October 1, 2016
+ * @date Sunday, October 2, 2016
  * @file Test.java
  *
  */
@@ -19,7 +19,7 @@ public class Test {
 	private TestQuestion[] _testQuestions;
 	private int _numIncorrectAns;
 	private int _numCorrectAns;
-	private int _testGrade;
+	private double _testGrade;
 
 	// Random number generator, shared between all Test objects
 	// only used internally to determine message to display to user
@@ -38,7 +38,7 @@ public class Test {
 		return _numCorrectAns;
 	}
 
-	public int getTestGrade() {
+	public double getTestGrade() {
 		return _testGrade;
 	}
 
@@ -46,7 +46,7 @@ public class Test {
 	// Do not allow external code to set these values
 	private void setNumCorrectAns(int numCorrectAns) {
 		this._numCorrectAns = numCorrectAns;
-		this._testGrade = this.getNumCorrectAns() / (this.getTestQuestions().length);
+		this._testGrade = (float) this.getNumCorrectAns() / this.getTestQuestions().length * 100.0;
 	}
 
 	// CONSTRUCTORS
@@ -156,29 +156,25 @@ public class Test {
 	private void generateMessage(boolean isAnswerCorrect) {
 		switch (this.randomNumGen.nextInt(4)) {
 		case 0:
-			JOptionPane.showMessageDialog(null, isAnswerCorrect ? "Excellent!" : "No. Please try again");
+			JOptionPane.showMessageDialog(null, isAnswerCorrect ? "Excellent!" : "No. Please try again",
+					isAnswerCorrect ? "Correct" : "Incorrect", JOptionPane.INFORMATION_MESSAGE);
 			break;
 		case 1:
-			JOptionPane.showMessageDialog(null, isAnswerCorrect ? "Good!" : "Wrong. Try once more");
+			JOptionPane.showMessageDialog(null, isAnswerCorrect ? "Good!" : "Wrong. Try once more",
+					isAnswerCorrect ? "Correct" : "Incorrect", JOptionPane.INFORMATION_MESSAGE);
 			break;
 		case 2:
-			JOptionPane.showMessageDialog(null, isAnswerCorrect ? "Keep up the good work!" : "Don't give up!");
+			JOptionPane.showMessageDialog(null, isAnswerCorrect ? "Keep up the good work!" : "Don't give up!",
+					isAnswerCorrect ? "Correct" : "Incorrect", JOptionPane.INFORMATION_MESSAGE);
 			break;
 		case 3:
-			JOptionPane.showMessageDialog(null, isAnswerCorrect ? "Nice work!" : "No. Keep trying...");
+			JOptionPane.showMessageDialog(null, isAnswerCorrect ? "Nice work!" : "No. Keep trying...",
+					isAnswerCorrect ? "Correct" : "Incorrect", JOptionPane.INFORMATION_MESSAGE);
 			break;
 		}
 	}
 
 	// PUBLIC METHODS
-	/**
-	 * Prompts the user for his/her answer to the provided question. An
-	 * exception is thrown if answer out of bounds.
-	 * 
-	 * @param questionNumber
-	 *            - the particular question the user is being prompted to answer
-	 * @return The answer entered by the user, has to be an integer between 1-4
-	 */
 	/**
 	 * Interacts with the user by prompting the user repeatedly for a valid
 	 * answer, and then providing feedback during the test as well as at the
@@ -188,16 +184,28 @@ public class Test {
 		// local variables
 		int userAnswer;
 		TestQuestion currentQuestion;
+		String testResults;
 
+		// iterate through all questions in the test
 		for (int questionNumber = 0; questionNumber < this.getTestQuestions().length; questionNumber++) {
 			currentQuestion = this.getTestQuestions()[questionNumber];
+			// PROMPTING USER FOR ANSWER
 			// used showOptionDialog here instead of showInputDialog to remove
 			// the extra validation required using try-catch blocks and throwing
 			// IllegalArgumentExceptions
 			userAnswer = JOptionPane.showOptionDialog(null, currentQuestion.getQuestion(),
 					currentQuestion.getQuestionTopic(), JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null,
 					new Integer[] { 4, 3, 2, 1 }, null);
-			System.out.println("You selected: " + (Math.abs(userAnswer - 4)));
+
+			// VALIDATING ANSWER
+			// used Math.abs(userAnswer-4) because the options were displayed in
+			// reverse order in order to cooperate with the GUI
+			this.checkAnswer(currentQuestion, (Math.abs(userAnswer - 4)));
 		}
+
+		// DISPLAY TEST RESULTS
+		testResults = String.format("Correct Answers: %s%nIncorrect Answers: %s%nTest Grade: %.2f%%%n",
+				this.getNumCorrectAns(), this.getNumIncorrectAns(), this.getTestGrade());
+		JOptionPane.showMessageDialog(null, testResults, "Test Results", JOptionPane.INFORMATION_MESSAGE);
 	}
 }

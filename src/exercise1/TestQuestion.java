@@ -6,7 +6,7 @@ package exercise1;
  * 
  * @author kevinma
  * @studentID 300867968
- * @date Saturday, October 1, 2016
+ * @date Sunday, October 2, 2016
  * @file TestQuestion.java
  *
  */
