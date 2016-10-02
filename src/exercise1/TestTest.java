@@ -8,10 +8,10 @@ import javax.swing.JOptionPane;
  * @author kevinma
  * @studentID 300867968
  * @date Saturday, October 1, 2016
- * @file TestDriver.java
+ * @file TestTest.java
  *
  */
-public class TestDriver {
+public class TestTest {
 
 	public static void main(String[] args) {
 
