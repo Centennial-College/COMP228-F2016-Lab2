@@ -39,7 +39,7 @@ public class Lotto {
 	 */
 	public Lotto() {
 		this._lottoNumbers = new int[3];
-		this._lottoSum = 0;
+		this.generateLottoNumbers();
 	}
 
 	// PUBLIC METHODS
@@ -48,6 +48,8 @@ public class Lotto {
 	 * Each lotto number is added to the running sum of the current iteration.
 	 */
 	public void generateLottoNumbers() {
+		this._lottoSum = 0;
+
 		for (int i = 0; i < this._lottoNumbers.length; i++) {
 			// each lotto number generated must be between 1 to 9
 			this._lottoNumbers[i] = this.RANDOM_NUMBER_GENERATOR.nextInt(9) + 1;
